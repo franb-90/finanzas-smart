@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzas SMART</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5A5A90',
+                        secondary: '#66C2B6',
+                        background: '#F0F2F5',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-icon {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+<div id="app" class="max-w-md mx-auto min-h-screen bg-white shadow-lg rounded-xl flex flex-col">
+    <header class="p-6 text-center">
+        <h1 class="text-3xl font-bold text-primary">Finanzas SMART</h1>
+    </header>
+
+    <main id="content" class="flex-grow p-4 overflow-y-auto">
+        <!-- El contenido se inyectará aquí -->
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 sticky bottom-0">
+        <nav class="flex justify-around items-center h-16">
+            <button class="nav-button flex flex-col items-center text-gray-500 hover:text-primary active-nav" data-page="dashboard">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125h9.75a1.125 1.125 0 001.125-1.125V9.75M8.25 21h.75a.75.75 0 00.75-.75m-.75.75H12m-4.5 0h.75m1.5 0h.75m-1.5 0v-.375m1.5.375v-.375m.375.375h-.75m.75 0h-.75m-1.5.75a.75.75 0 01-.75-.75v-.75m.75.75a.75.75 0 00.75-.75v-.75m-.75.75h-.375m.75.75h-.375m-.375.75a.75.75 0 01-.75-.75v-.75m.75.75a.75.75 0 00.75-.75v-.75m-.75.75h-.375m-.375-.75V11.25M12 21v-.375m-.75.375h.75m-1.5 0h1.5M12 21a.75.75 0 01-.75-.75v-.75m.75.75a.75.75 0 00.75-.75v-.75m-.75.75h-.75m1.5-.75h-.75m-.75-.75v-.75m-.75-.75h-.75m-1.5-.75v-.75m-.75.75a.75.75 0 01-.75-.75v-.75m.75.75a.75.75 0 00.75-.75v-.75m-.75.75h-.375m1.5-.75h-.375m-.75-.75v-.75m-.75-.75h-.75m1.5-.75h.75M12 12m-4.5.75v-.75m-1.5-.75v-.75m-.75-.75v-.75m-.75-.75v-.75m.75.75h.75m-1.5.75h.75m-.75.75v-.75M12 12m-4.5.75v-.75m-1.5-.75v-.75m-.75-.75v-.75m-.75-.75v-.75m.75.75h.75m-1.5.75h.75m-.75.75v-.75" />
+                </svg>
+                <span class="text-xs">Inicio</span>
+            </button>
+            <button class="nav-button flex flex-col items-center text-gray-500 hover:text-primary" data-page="transactions">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h9.75M8.25 12h9.75m-9.75 5.25h9.75M4.5 18.75h.008v.008H4.5v-.008zm.008-6.75H4.5v-.008h.008v.008zm-.008-6.75H4.5v-.008h.008v.008z" />
+                </svg>
+                <span class="text-xs">Movimientos</span>
+            </button>
+            <div class="relative w-16 h-16 -top-4">
+                <button id="add-transaction-btn" class="w-full h-full rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </button>
+            </div>
+            <button class="nav-button flex flex-col items-center text-gray-500 hover:text-primary" data-page="goals">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 10.5a.75.75 0 110-1.5.75.75 0 010 1.5zM12 14.25a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                </svg>
+                <span class="text-xs">Metas</span>
+            </button>
+            <button class="nav-button flex flex-col items-center text-gray-500 hover:text-primary" data-page="more">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                </svg>
+                <span class="text-xs">Más</span>
+            </button>
+        </nav>
+    </footer>
+</div>
+
+<!-- Estructura del Modal -->
+<div id="modal" class="fixed inset-0 z-50 bg-black bg-opacity-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white p-6 rounded-lg w-full max-w-sm shadow-xl">
+        <div id="modal-content"></div>
+    </div>
+</div>
+
+<script>
+    // Datos de prueba
+    let dummyTransactions = [
+        { id: '1', type: 'expense', amount: 25.50, category: 'Alimentación', date: new Date(new Date().setDate(new Date().getDate() - 1)), note: 'Compra de víveres', currency: '€' },
+        { id: '2', type: 'income', amount: 1500.00, category: 'Salario', date: new Date(new Date().setDate(new Date().getDate() - 2)), note: 'Sueldo mensual', currency: '€' },
+        { id: '3', type: 'expense', amount: 50.00, category: 'Ocio', date: new Date(new Date().setDate(new Date().getDate() - 3)), note: 'Cena con amigos', currency: '€' },
+        { id: '4', type: 'expense', amount: 12.00, category: 'Transporte', date: new Date(new Date().setDate(new Date().getDate() - 4)), note: 'Recarga de metro', currency: '€' },
+        { id: '5', type: 'expense', amount: 15.00, category: 'Transporte', date: new Date(new Date().setDate(new Date().getDate() - 5)), note: 'Uber', currency: '$' },
+        { id: '6', type: 'expense', amount: 35.00, category: 'Alimentación', date: new Date(new Date().setDate(new Date().getDate() - 6)), note: 'Almuerzo', currency: '€' },
+        { id: '7', type: 'expense', amount: 5000, category: 'Transporte', date: new Date(), note: 'Pasaje en bus', currency: 'CLP' },
+    ];
+
+    let dummyGoals = [
+        { id: '1', name: 'Vacaciones en la playa', targetAmount: 800.00, savedAmount: 350.00 },
+        { id: '2', name: 'Nuevo portátil', targetAmount: 1200.00, savedAmount: 100.00 },
+    ];
+
+    let dummyCategories = [
+        'Alimentación',
+        'Salario',
+        'Ocio',
+        'Transporte',
+        'Salud',
+        'Servicios',
+        'Inversiones',
+    ];
+
+    // Funciones de utilidad
+    const formatCurrency = (amount, currencySymbol = '€') => {
+        return `${currencySymbol}${amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+    };
+
+    const formatDate = (date) => {
+        const d = new Date(date);
+        return `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getFullYear()}`;
+    };
+    
+    // Funciones de cálculo
+    const calculateBalance = () => {
+        const totalIncome = dummyTransactions.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0);
+        const totalExpense = dummyTransactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0);
+        return totalIncome - totalExpense;
+    };
+
+    // Vistas de la aplicación
+    const pages = {
+        dashboard: `
+            <div class="space-y-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Resumen Mensual</h2>
+                <div class="bg-primary text-white p-6 rounded-2xl shadow-md">
+                    <p class="text-sm opacity-80">Balance Total</p>
+                    <!-- Nota: El balance total se muestra en Euros por defecto para simplificar, sin conversión de moneda -->
+                    <p class="text-4xl font-bold mt-1">${formatCurrency(calculateBalance(), '€')}</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-800">Gastos por Categoría</h3>
+                    <div class="mt-4 h-48 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm">
+                        Gráfico Circular de Categorías (Simulado)
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-800">Metas de Ahorro</h3>
+                    <div id="goals-list" class="mt-4 space-y-4">
+                        ${dummyGoals.map(goal => `
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="font-medium">${goal.name}</p>
+                                <div class="text-sm text-gray-500">${formatCurrency(goal.savedAmount, '€')} / ${formatCurrency(goal.targetAmount, '€')}</div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                                    <div class="bg-secondary h-2.5 rounded-full" style="width: ${(goal.savedAmount / goal.targetAmount) * 100}%"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `,
+        transactions: `
+            <div class="space-y-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Movimientos</h2>
+                <div class="relative">
+                    <input type="text" id="transaction-search" class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar movimientos...">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </div>
+                <div id="transactions-list" class="space-y-2">
+                    <!-- Los movimientos se añadirán dinámicamente aquí -->
+                </div>
+            </div>
+        `,
+        goals: `
+            <div class="space-y-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold text-gray-800">Metas de Ahorro</h2>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-primary/80 transition-colors duration-200" onclick="showAddGoalModal()">Añadir Meta</button>
+                </div>
+                <div id="goals-list" class="space-y-4">
+                    ${dummyGoals.map(goal => `
+                        <div class="bg-white p-5 rounded-2xl shadow-md flex flex-col items-start">
+                            <h3 class="text-lg font-semibold">${goal.name}</h3>
+                            <p class="text-sm text-gray-500">${formatCurrency(goal.savedAmount, '€')} de ${formatCurrency(goal.targetAmount, '€')}</p>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                                <div class="bg-secondary h-2.5 rounded-full" style="width: ${(goal.savedAmount / goal.targetAmount) * 100}%"></div>
+                            </div>
+                            <button class="mt-4 px-4 py-2 text-sm font-semibold text-primary border border-primary rounded-full hover:bg-primary hover:text-white transition-colors duration-200" onclick="showContributeModal('${goal.name}', '${goal.id}')">Aportar</button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `,
+        more: `
+            <div class="space-y-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Más Opciones</h2>
+                <div class="bg-white rounded-2xl shadow-md p-2">
+                    <button class="w-full flex items-center p-4 rounded-xl text-left hover:bg-gray-100 transition-colors duration-200" onclick="navigateTo('categories')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-4 text-primary">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5M3.75 18.75h16.5M3.75 5.25h16.5" />
+                        </svg>
+                        Gestión de Categorías
+                    </button>
+                    <button class="w-full flex items-center p-4 rounded-xl text-left hover:bg-gray-100 transition-colors duration-200" onclick="exportToCsv()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-4 text-primary">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.25m-6-3.626l-1.636-1.636a1.125 1.125 0 00-1.591 0L5.25 11.25m6-3.626V4.5m0 3.124L9.25 9.25m1.5-1.5L12 6.75m0-2.25l-2.25 2.25M12 18.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM12 18.75a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z" />
+                        </svg>
+                        Exportar a CSV
+                    </button>
+                </div>
+            </div>
+        `,
+        categories: `
+            <div class="space-y-4">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Categorías</h2>
+                <div class="flex justify-end mb-4">
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-primary/80 transition-colors duration-200" onclick="showAddCategoryModal()">Añadir Categoría</button>
+                </div>
+                <div id="categories-list" class="space-y-2">
+                    ${dummyCategories.map(category => `
+                        <div class="bg-gray-50 p-4 rounded-lg flex justify-between items-center">
+                            <span>${category}</span>
+                            <!-- Botones de acción, si se desean -->
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `
+    };
+
+    // Funciones de navegación
+    const navigateTo = (page) => {
+        const content = document.getElementById('content');
+        content.innerHTML = pages[page];
+
+        // Resaltar el botón de navegación activo
+        document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('text-primary', 'active-nav'));
+        document.querySelector(`.nav-button[data-page="${page}"]`).classList.add('text-primary', 'active-nav');
+        
+        // Lógica específica para cada página
+        if (page === 'transactions') {
+            renderTransactionsList(dummyTransactions);
+            document.getElementById('transaction-search').addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = dummyTransactions.filter(t => t.note.toLowerCase().includes(query) || t.category.toLowerCase().includes(query));
+                renderTransactionsList(filtered);
+            });
+        }
+    };
+    
+    const renderTransactionsList = (transactions) => {
+        const list = document.getElementById('transactions-list');
+        list.innerHTML = transactions.map(t => `
+            <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center ${t.type === 'expense' ? 'bg-red-100 text-red-500' : 'bg-green-100 text-green-500'}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="${t.type === 'expense' ? 'M4.5 15.75l7.5-7.5 7.5 7.5' : 'M19.5 8.25l-7.5 7.5-7.5-7.5'}" />
+                    </svg>
+                </div>
+                <div class="ml-4 flex-grow">
+                    <div class="font-medium text-gray-800">${t.note}</div>
+                    <div class="text-sm text-gray-500">${t.category} - ${formatDate(t.date)}</div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="text-lg font-bold ${t.type === 'expense' ? 'text-red-500' : 'text-green-500'}">
+                        ${t.type === 'expense' ? '-' : '+'}${t.currency} ${t.amount.toFixed(2)}
+                    </div>
+                    <button onclick="showDeleteConfirmation('${t.id}')" class="text-gray-400 hover:text-red-500 transition-colors duration-200 p-1 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.919a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m-1.022.165L6.91 19.673a2.25 2.25 0 002.244 2.077h7.218a2.25 2.25 0 002.244-2.077L19.584 5.79m-4.07-.059L12 2.25m-.75 3.75h-.75M21 5.25a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 5.25v13.5A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V5.25z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    };
+
+    // Funciones de Modal
+    const showModal = (contentHtml) => {
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modal-content');
+        modalContent.innerHTML = contentHtml;
+        modal.classList.remove('hidden');
+        
+        // Añadir funcionalidad para cerrar el modal al hacer clic fuera
+        modal.addEventListener('click', (e) => {
+            if (e.target.id === 'modal') {
+                modal.classList.add('hidden');
+            }
+        });
+    };
+
+    const hideModal = () => {
+        document.getElementById('modal').classList.add('hidden');
+    };
+
+    const showMessageModal = (message, title = "Información") => {
+        const modalContent = `
+            <h3 class="text-xl font-bold mb-4 text-center">${title}</h3>
+            <p class="text-gray-700 text-center mb-4">${message}</p>
+            <button onclick="hideModal()" class="w-full py-2 bg-primary text-white font-bold rounded-lg hover:bg-primary/80 transition-colors duration-200">Cerrar</button>
+        `;
+        showModal(modalContent);
+    };
+
+    // Formularios en los modales
+    const addTransactionForm = `
+        <h3 class="text-xl font-bold mb-4 text-center">Añadir Transacción</h3>
+        <form id="add-transaction-form" class="space-y-4">
+            <input type="number" step="0.01" name="amount" placeholder="Monto" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+            <select name="currency" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="€">Euro (€)</option>
+                <option value="$">Dólar ($)</option>
+                <option value="£">Libra (£)</option>
+                <option value="CLP">Peso Chileno (CLP)</option>
+            </select>
+            <select name="type" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="expense">Gasto</option>
+                <option value="income">Ingreso</option>
+            </select>
+            <select name="category" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                ${dummyCategories.map(c => `<option value="${c}">${c}</option>`).join('')}
+            </select>
+            <input type="text" name="note" placeholder="Nota (opcional)" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+            <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/80 transition-colors duration-200">Guardar</button>
+        </form>
+    `;
+
+    const addCategoryForm = `
+        <h3 class="text-xl font-bold mb-4 text-center">Añadir Categoría</h3>
+        <form id="add-category-form" class="space-y-4">
+            <input type="text" name="name" placeholder="Nombre de la categoría" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+            <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/80 transition-colors duration-200">Guardar</button>
+        </form>
+    `;
+
+    const addGoalForm = `
+        <h3 class="text-xl font-bold mb-4 text-center">Añadir Nueva Meta</h3>
+        <form id="add-goal-form" class="space-y-4">
+            <input type="text" name="name" placeholder="Nombre de la meta" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+            <div class="relative">
+                <input type="number" step="0.01" name="targetAmount" placeholder="Monto objetivo (€)" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">€</span>
+            </div>
+            <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/80 transition-colors duration-200">Guardar Meta</button>
+        </form>
+    `;
+
+    const contributeGoalForm = (goalName) => `
+        <h3 class="text-xl font-bold mb-4 text-center">Aportar a "${goalName}"</h3>
+        <form id="contribute-goal-form" class="space-y-4">
+            <div class="relative">
+                <input type="number" step="0.01" name="amount" placeholder="Monto de aporte (€)" required class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">€</span>
+            </div>
+            <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/80 transition-colors duration-200">Aportar</button>
+        </form>
+    `;
+    
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+        // Navegación inicial
+        navigateTo('dashboard');
+
+        // Botones de navegación
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const page = e.currentTarget.dataset.page;
+                navigateTo(page);
+            });
+        });
+
+        // Botón para añadir una transacción
+        document.getElementById('add-transaction-btn').addEventListener('click', () => {
+            showModal(addTransactionForm);
+            document.getElementById('add-transaction-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const newTransaction = {
+                    id: Date.now().toString(),
+                    type: formData.get('type'),
+                    amount: parseFloat(formData.get('amount')),
+                    currency: formData.get('currency'),
+                    category: formData.get('category'),
+                    date: new Date(),
+                    note: formData.get('note'),
+                };
+                dummyTransactions.unshift(newTransaction);
+                hideModal();
+                showMessageModal('Transacción agregada con éxito.');
+                navigateTo('transactions');
+            });
+        });
+    });
+
+    // Funciones globales para ser llamadas desde HTML
+    window.navigateTo = navigateTo;
+    window.showModal = showModal;
+    window.hideModal = hideModal;
+    window.showMessageModal = showMessageModal;
+    window.deleteTransaction = (id) => {
+        dummyTransactions = dummyTransactions.filter(t => t.id !== id);
+        hideModal();
+        showMessageModal('Movimiento eliminado con éxito.', 'Eliminado');
+        renderTransactionsList(dummyTransactions);
+    };
+
+    window.showDeleteConfirmation = (id) => {
+        const modalContent = `
+            <h3 class="text-xl font-bold mb-4 text-center">Confirmar Eliminación</h3>
+            <p class="text-gray-700 text-center mb-6">¿Estás seguro de que quieres eliminar este movimiento?</p>
+            <div class="flex justify-around space-x-4">
+                <button onclick="hideModal()" class="w-1/2 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200">Cancelar</button>
+                <button onclick="deleteTransaction('${id}')" class="w-1/2 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition-colors duration-200">Eliminar</button>
+            </div>
+        `;
+        showModal(modalContent);
+    };
+
+    window.showAddCategoryModal = () => {
+        showModal(addCategoryForm);
+        document.getElementById('add-category-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const newCategory = formData.get('name');
+            dummyCategories.push(newCategory);
+            hideModal();
+            showMessageModal(`Categoría "${newCategory}" agregada.`);
+            navigateTo('categories');
+        });
+    };
+
+    window.showAddGoalModal = () => {
+        showModal(addGoalForm);
+        document.getElementById('add-goal-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const newGoal = {
+                id: Date.now().toString(),
+                name: formData.get('name'),
+                targetAmount: parseFloat(formData.get('targetAmount')),
+                savedAmount: 0,
+            };
+            dummyGoals.push(newGoal);
+            hideModal();
+            showMessageModal(`Meta "${newGoal.name}" agregada.`);
+            navigateTo('goals');
+        });
+    };
+
+    window.showContributeModal = (goalName, goalId) => {
+        showModal(contributeGoalForm(goalName));
+        document.getElementById('contribute-goal-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const amount = parseFloat(formData.get('amount'));
+            const goal = dummyGoals.find(g => g.id === goalId);
+            if (goal) {
+                goal.savedAmount += amount;
+                hideModal();
+                showMessageModal(`Aporte de ${formatCurrency(amount, '€')} a "${goal.name}" realizado.`);
+                navigateTo('goals');
+            } else {
+                showMessageModal('Meta no encontrada.', 'Error');
+            }
+        });
+    };
+
+    window.exportToCsv = () => {
+        const csvHeader = ['Fecha', 'Tipo', 'Monto', 'Moneda', 'Categoría', 'Nota'];
+        const csvRows = dummyTransactions.map(t => [
+            formatDate(t.date),
+            t.type === 'expense' ? 'Gasto' : 'Ingreso',
+            t.amount,
+            t.currency,
+            t.category,
+            t.note
+        ].map(value => `"${value}"`).join(',')); // Encerrar valores entre comillas para manejar comas en las notas
+
+        const csvContent = [csvHeader.join(','), ...csvRows].join('\n');
+        
+        // Simular descarga
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "transacciones.csv");
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        showMessageModal('Archivo CSV descargado.');
+    };
+</script>
+
+</body>
+</html>
